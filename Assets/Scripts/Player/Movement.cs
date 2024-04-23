@@ -37,7 +37,9 @@ public class Movement : MonoBehaviour
         float x = Input.GetAxis("Horizontal");
         if (x != 0)
         {
-            transform.localScale = new Vector3(Mathf.Sign(-x), 1, 1);
+            float xscale = transform.localScale.x;
+            float yscale = transform.localScale.y;
+            transform.localScale = new Vector3(Mathf.Sign(xscale) * xscale, yscale, 1);
         }
         
         
