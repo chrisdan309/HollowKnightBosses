@@ -1,17 +1,34 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    private State currentState;
     public int maxHealth = 100; // Máxima salud del enemigo
-    int currentHealth; // Salud actual del enemigo
+    int currentHealth; 
     
     void Start()
     {
         currentHealth = maxHealth; // Inicializar la salud del enemigo
+        ChangeState(new IdleState(this));
     }
 
+    void Update()
+    {
+        if (currentState != null)
+        {
+            currentState.Execute();
+        }
+    }
+
+    public void ChangeState(State newState)
+    {
+        if (currentState != null)
+            currentState.Exit();
+        currentState = newState;
+        currentState.Enter();
+
+    }
+    
     public void TakeDamage(int damage)
     {
         // Restar daño a la salud
@@ -34,6 +51,6 @@ public class Enemy : MonoBehaviour
         // Destruir el GameObject enemigo
         Destroy(gameObject);
     }
-
+    
     
 }

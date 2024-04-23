@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -19,6 +20,16 @@ public class Marmu : Enemy
         StartCoroutine(BounceRoutine());
     }
 
+    void OnTriggerEnter2D(Collider2D other) {
+        if (other.CompareTag("Player")) {
+            Debug.Log("Trigger con el jugador!");
+            // Lógica específica del trigger con el jugador
+        }
+    }
+
+    void OnCollisionEnter2D(Collision2D collision) {
+        Debug.Log("Colisión con: " + collision.gameObject.name);
+    }
     IEnumerator BounceRoutine()
     {
         while (true)
@@ -39,7 +50,8 @@ public class Marmu : Enemy
     private void ApplyRandomBounceForce()
     {
         
-        Vector2 forceDirection = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized;
+        //Vector2 forceDirection = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized;
+        Vector2 forceDirection = new Vector2(-1f, 0).normalized;
         rb.AddForce(forceDirection * bounceForce, ForceMode2D.Impulse);
     }
 

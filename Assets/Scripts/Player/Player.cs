@@ -6,43 +6,75 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    // Start is called before the first frame update
     public int life = 3;
+    public float invulnerabilityTime = 2f;
+    [SerializeField] 
+    private bool isInvulnerable = false;
     private Rigidbody2D rb;
-    void Start()
+    private int defaultLayer;
+    
+    private SpriteRenderer spriteRenderer;
+    public Color invulnerableColor = Color.blue;
+    private Color originalColor;
+
+    private void Awake()
     {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        originalColor = spriteRenderer.color;
         rb = GetComponent<Rigidbody2D>();
+        defaultLayer = gameObject.layer;
     }
 
-    void Update()
+    public void OnTriggerEnter2D(Collider2D collision)
     {
-        
-    }
-
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Enemy"))
+        Debug.Log("ASDASDs");
+        if (collision.gameObject.CompareTag("Enemy") && !isInvulnerable)
         {
+            Debug.Log("Entro");
             life--;
-
-            float direction = (transform.position.x - collision.transform.position.x);
-            
-            if(direction > 0)
-            {
-                Debug.Log("Izquierda");
-                direction = -1;
-            }
-            else
-            {
-                Debug.Log("Derecha");
-                direction = 1;
-            }
-            rb.AddForce(new Vector2(direction * 100, 10), ForceMode2D.Impulse);
+            MakeInvulnerable();
+            StartCoroutine(PushPlayer(collision));
+            // PushPlayer(collision);
             if (life <= 0)
             {
                 Destroy(gameObject);
             }
         }
     }
+
+    private void MakeInvulnerable()
+    {
+        isInvulnerable = true;
+        spriteRenderer.color = invulnerableColor;
+
+        Invoke("RemoveInvulnerability", invulnerabilityTime);
+    }
+
+    private void RemoveInvulnerability()
+    {
+        isInvulnerable = false;
+        spriteRenderer.color = originalColor;
+        gameObject.layer = defaultLayer;  // Vuelve a la capa original
+    }
+
+    IEnumerator PushPlayer(Collider2D collision)
+    {
+        float direction = (transform.position.x - collision.transform.position.x) > 0 ? -1 : 1;
+        Debug.Log(direction > 0 ? "Izquierda" : "Derecha");
+        
+        rb.AddForce(new Vector2(direction * 0.001f, 0), ForceMode2D.Impulse);
+        yield return new WaitForSeconds(0.8f);
+        rb.velocity = new Vector2(0,0);
+
+    }
+    // private void PushPlayer(Collider2D collision)
+    // {
+    //     float direction = (transform.position.x - collision.transform.position.x) > 0 ? -1 : 1;
+    //     Debug.Log(direction > 0 ? "Izquierda" : "Derecha");
+    //
+    //     rb.AddForce(new Vector2(direction * 0.5f, 0), ForceMode2D.Impulse);
+    //
+    // }
+
 
 }
