@@ -67,14 +67,7 @@ public class Player : MonoBehaviour
         rb.velocity = new Vector2(0,0);
 
     }
-    // private void PushPlayer(Collider2D collision)
-    // {
-    //     float direction = (transform.position.x - collision.transform.position.x) > 0 ? -1 : 1;
-    //     Debug.Log(direction > 0 ? "Izquierda" : "Derecha");
-    //
-    //     rb.AddForce(new Vector2(direction * 0.5f, 0), ForceMode2D.Impulse);
-    //
-    // }
+
 
 
 }

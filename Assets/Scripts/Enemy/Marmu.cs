@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using UnityEngine;
 
@@ -11,49 +10,57 @@ public class Marmu : Enemy
     private Rigidbody2D rb;
     private bool isBouncing = false;
 
-    // Start is called before the first frame update
+    protected override void OnStateChange()
+    {
+        base.OnStateChange();
+        if (currentState == EnemyState.Attacking)
+        {
+            StartCoroutine(BounceRoutine());
+        }
+    }
+    
     void Start()
     {
         rotation = 1000f;
         rb = GetComponent<Rigidbody2D>();
         rb.angularVelocity = rotation;
-        StartCoroutine(BounceRoutine());
+        
+        states.Add(EnemyState.Idle, new State(EnemyState.Idle));
+        states[EnemyState.Idle].actions.Add(new IdleAction(rb));
+
+        states.Add(EnemyState.Attacking, new State(EnemyState.Attacking));
+        states[EnemyState.Attacking].actions.Add(new BounceAction(bounceForce, rb));
+        
+        states.Add(EnemyState.Dead, new State(EnemyState.Dead));
+        states[EnemyState.Dead].actions.Add(new DeadAction());
+
+        ChangeState(EnemyState.Attacking);
     }
 
     void OnTriggerEnter2D(Collider2D other) {
         if (other.CompareTag("Player")) {
             Debug.Log("Trigger con el jugador!");
-            // Lógica específica del trigger con el jugador
+            // Lógica trigger plauer
         }
     }
 
     void OnCollisionEnter2D(Collision2D collision) {
         Debug.Log("Colisión con: " + collision.gameObject.name);
     }
+
     IEnumerator BounceRoutine()
     {
-        while (true)
+        while (currentState == EnemyState.Attacking)
         {
             isBouncing = true;
-            ApplyRandomBounceForce();
-            
+            states[currentState].ExecuteStateActions(this);
             yield return new WaitForSeconds(bounceDuration);
 
-
             isBouncing = false;
-            rb.velocity = Vector2.zero;
-            
+            ChangeState(EnemyState.Idle);
             yield return new WaitForSeconds(pauseDuration);
+
+            ChangeState(EnemyState.Attacking);
         }
     }
-
-    private void ApplyRandomBounceForce()
-    {
-        
-        //Vector2 forceDirection = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized;
-        Vector2 forceDirection = new Vector2(-1f, 0).normalized;
-        rb.AddForce(forceDirection * bounceForce, ForceMode2D.Impulse);
-    }
-
-
 }

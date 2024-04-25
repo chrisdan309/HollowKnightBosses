@@ -5922,8 +5922,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b9dd71dda045594c9ff501e343c8ad1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
-  bounceForce: 35
+  health: 100
+  attackPower: 1
+  currentState: 0
+  bounceForce: 16
   bounceDuration: 6
   pauseDuration: 2
   rotation: 0
@@ -5988,7 +5990,7 @@ Transform:
   m_GameObject: {fileID: 1426592315}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.28, y: 2.22, z: 9.48}
+  m_LocalPosition: {x: 1.86, y: 0.04, z: 9.48}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -6056,7 +6058,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 3
 --- !u!1 &1585549482
 GameObject:
   m_ObjectHideFlags: 0
@@ -6138,6 +6140,7 @@ GameObject:
   - component: {fileID: 2015614421}
   - component: {fileID: 2015614422}
   - component: {fileID: 2015614423}
+  - component: {fileID: 2015614424}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -6299,8 +6302,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   jumpForce: 10.4
-  isGrounded: 0
+  fallMultiplier: 5
+  dashSpeed: 15
+  dashDuration: 1
   disableDuration: 1
+  defaultLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  dashLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  dashColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &2015614423
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6317,6 +6329,24 @@ MonoBehaviour:
   invulnerabilityTime: 2
   isInvulnerable: 0
   invulnerableColor: {r: 0, g: 0, b: 1, a: 1}
+--- !u!114 &2015614424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2015614417}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0dee73b47a257642b156946da5c0446, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackPoint: {fileID: 380186040}
+  attackRange: 1.74
+  attackDamage: 20
+  enemyLayers:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

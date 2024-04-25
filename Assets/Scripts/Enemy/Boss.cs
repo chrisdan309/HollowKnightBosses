@@ -1,13 +1,11 @@
 ﻿using UnityEngine;
 
-public abstract class Boss : MonoBehaviour
+public class Boss : Enemy
 {
-    protected State currentState;
-
-    public abstract void ChangeState(State newState);
-
-    protected virtual void Update()
+    void Awake()
     {
-        currentState?.Execute();
+        states.Add(EnemyState.Attacking, new State(EnemyState.Attacking));
+        states[EnemyState.Attacking].actions.Add(new AttackAction(1));
+        states[EnemyState.Attacking].actions.Add(new SpecialAttackAction(2));
     }
 }

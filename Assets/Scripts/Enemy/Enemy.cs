@@ -1,56 +1,47 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+
+public enum EnemyState
+{
+    Idle,
+    Attacking,
+    Dead
+}
 
 public class Enemy : MonoBehaviour
 {
-    private State currentState;
-    public int maxHealth = 100; // Máxima salud del enemigo
-    int currentHealth; 
-    
+    public float health;
+    public float attackPower;
+    public EnemyState currentState;
+    public readonly Dictionary<EnemyState, State> states = new();
+
     void Start()
     {
-        currentHealth = maxHealth; // Inicializar la salud del enemigo
-        ChangeState(new IdleState(this));
+        ChangeState(EnemyState.Idle);
     }
 
-    void Update()
+    protected void ChangeState(EnemyState newState)
     {
-        if (currentState != null)
-        {
-            currentState.Execute();
-        }
-    }
-
-    public void ChangeState(State newState)
-    {
-        if (currentState != null)
-            currentState.Exit();
+        if (currentState == newState) return;
         currentState = newState;
-        currentState.Enter();
-
+        OnStateChange();
     }
-    
-    public void TakeDamage(int damage)
-    {
-        // Restar daño a la salud
-        currentHealth -= damage;
 
-        // Si la salud llega a cero, 'matar' al enemigo
-        if (currentHealth <= 0)
+    protected virtual void OnStateChange()
+    {
+        if (states.ContainsKey(currentState))
         {
-            Die();
+            states[currentState].ExecuteStateActions(this);
         }
     }
 
-    void Die()
+    public void TakeDamage(float damage)
     {
-        // Aquí puedes poner la lógica para lo que sucede cuando el enemigo muere
-        // Por ejemplo, podrías reproducir una animación de muerte
-
-        Debug.Log("Enemy died!");
-
-        // Destruir el GameObject enemigo
-        Destroy(gameObject);
+        health -= damage;
+        if (health <= 0)
+        {
+            ChangeState(EnemyState.Dead);
+        }
     }
-    
-    
 }
