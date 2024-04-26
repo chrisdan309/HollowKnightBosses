@@ -118,7 +118,7 @@ TextureImporter:
         width: 161
         height: 205
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -126,6 +126,27 @@ TextureImporter:
       bones: []
       spriteID: 4dfd81532d35a0e41bfb36d16a326432
       internalID: -1838701627
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack01
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 3671
+        width: 344
+        height: 304
+      alignment: 9
+      pivot: {x: 0.85, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f1a0102dcaf953b43b3c2a086eb3e450
+      internalID: 893217638
       vertices: []
       indices: 
       edges: []
@@ -141,6 +162,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
+      Attack01: 893217638
       Hornet fight - atlas0 #10607_0: -1838701627
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0

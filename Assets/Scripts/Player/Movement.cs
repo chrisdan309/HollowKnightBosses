@@ -2,132 +2,121 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-public class Movement : MonoBehaviour
-{
-    public float speed = 5.0f;
-    public float jumpForce = 7.0f;
-    public float fallMultiplier = 2.5f;
-    public float dashSpeed = 10f;
-    public float dashDuration = 0.1f;
-    public float disableDuration = 1.0f;
-    public LayerMask defaultLayer;
-    public LayerMask dashLayer;
+public class Movement : MonoBehaviour{
 
-    private SpriteRenderer spriteRenderer;
-    private Rigidbody2D _rb;
-    private bool isGrounded;
-    private bool canMove = true; 
-    private bool canDoubleJump = true;
-    public Color dashColor = Color.red;
-    private Color originalColor;
+	public float speed = 5.0f;
+	public float jumpForce = 7.0f;
+	public float doubleJumpForce = 3f;
+	public float fallMultiplier = 4f;
+	public float lowJumpMultiplier = 3f;
+	public float dashSpeed = 25f;
+	public float dashDuration = 0.001f;
+	public float disableDuration = 1.0f;
+	public Color dashColor = Color.red;
+	public LayerMask defaultLayer;
+	public LayerMask dashLayer;
 
-    private void Awake()
-    {
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        originalColor = spriteRenderer.color;
-    }
+	private SpriteRenderer spriteRenderer;
+	private Rigidbody2D _rb;
+	private bool isGrounded;
+	private bool canMove = true; 
+	private bool canDoubleJump = true;
+	private Color originalColor;
 
-    void Start()
-    {
-        _rb = GetComponent<Rigidbody2D>();
-    }
+	private void Awake(){
+		spriteRenderer = GetComponent<SpriteRenderer>();
+		originalColor = spriteRenderer.color;
+	}
 
-    void Update()
-    {
-        if (canMove)
-        {
-            MovePlayer();
-            Jump();
-            if (Input.GetKeyDown(KeyCode.LeftShift))
-            {
-                StartCoroutine(Dash(Input.GetAxis("Horizontal")));
-            }
-        }
-        
-        if (_rb.velocity.y < 0)
-        {
-            _rb.velocity += Vector2.up * (Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime);
-        }
-    }
+	void Start(){
+		_rb = GetComponent<Rigidbody2D>();
+	}
 
-    void MovePlayer()
-    {
-        float x = Input.GetAxis("Horizontal");
-        if (x != 0)
-        {
-            float xscale = -1*Mathf.Sign(x);
-            transform.localScale = new Vector3(xscale * Mathf.Abs(transform.localScale.x), transform.localScale.y, 1);
-        }
+	void Update(){
+		if (canMove){
+			MovePlayer();
+			Jump();
+			if (Input.GetKeyDown(KeyCode.LeftShift)){
+				StartCoroutine(Dash());
+			}
+		}
 
-        Vector2 movement = new Vector2(x * speed, _rb.velocity.y);
-        _rb.velocity = movement;
-    }
-    
-    void Jump()
-    {
-        if (Input.GetButtonDown("Jump"))
-        {
-            if (isGrounded)
-            {
-                _rb.velocity = new Vector2(_rb.velocity.x, 0);
-                _rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
-                canDoubleJump = true;
-            }
-            else if (canDoubleJump)
-            {
-                _rb.velocity = new Vector2(_rb.velocity.x, 0);
-                _rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
-                canDoubleJump = false;
-            }
-        }
-    }
+	}
 
-    private IEnumerator Dash(float direction)
-    {
-        Debug.Log(dashLayer);
-        spriteRenderer.color = dashColor;
-        gameObject.layer = LayerMask.NameToLayer("DashLayer");
-        ;  // Change layer to dash layer
-        float startTime = Time.time;
-        while (Time.time < startTime + dashDuration)
-        {
-            _rb.velocity = new Vector2(direction * dashSpeed, 0);
-            yield return null;
-        }
-        gameObject.layer = LayerMask.NameToLayer("Player");  // Reset to default layer
-        spriteRenderer.color = originalColor;
-    }
+	void MovePlayer(){
+		float x = Input.GetAxis("Horizontal");
+		if (x != 0){
+			float xscale = Mathf.Sign(x);
+			transform.localScale = new Vector3(xscale * Mathf.Abs(transform.localScale.x), transform.localScale.y, 1);
+		}
 
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("Enemy"))
-        {
-            StartCoroutine(DisableMovement(disableDuration));
-        }
-    }
+		//change to force if i have time
+		Vector2 movement = new Vector2(x * speed, _rb.velocity.y);
+		_rb.velocity = movement;
+	}
+	
+	void Jump(){
+		if (Input.GetButtonDown("Jump")){
+			if (isGrounded){
+				_rb.velocity = new Vector2(_rb.velocity.x, 0);
+				_rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
+				canDoubleJump = true;
+			}
+			else if (canDoubleJump){
+				_rb.velocity = new Vector2(_rb.velocity.x, 0);
+				_rb.AddForce(new Vector2(0, doubleJumpForce), ForceMode2D.Impulse);
+				canDoubleJump = false;
+			}
+		}
+		if (_rb.velocity.y < -0.001f){
+			_rb.gravityScale = fallMultiplier;
+		}
+		else if (_rb.velocity.y > 0.001f && !Input.GetButton("Jump")){
+			_rb.gravityScale = lowJumpMultiplier;
+		}
+		else{
+			_rb.gravityScale = 1;
+		}
+	}
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.collider.CompareTag("Ground"))
-        {
-            isGrounded = true;
-        }
-    }
+	private IEnumerator Dash(){
+		Debug.Log(dashLayer);
+		spriteRenderer.color = dashColor;
+		float direction = transform.right.x * MathF.Sign(transform.localScale.x);
+		gameObject.layer = LayerMask.NameToLayer("DashLayer");
+		// Change layer to dash layer
+		float startTime = Time.time;
+		while (Time.time < startTime + dashDuration){
+			_rb.velocity = new Vector2(direction * dashSpeed, 0);
+			yield return null;
+		}
+		gameObject.layer = LayerMask.NameToLayer("Player");  // Reset to default layer
+		spriteRenderer.color = originalColor;
+	}
 
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        if (collision.collider.CompareTag("Ground"))
-        {
-            isGrounded = false;
-        }
-    }
-    
-    private IEnumerator DisableMovement(float duration)
-    {
-        canMove = false;
-        yield return new WaitForSeconds(duration);
-        canMove = true;
-    }
+	private void OnTriggerEnter2D(Collider2D other){
+		if (other.CompareTag("Enemy")){
+			StartCoroutine(DisableMovement(disableDuration));
+		}
+	}
+
+	private void OnCollisionEnter2D(Collision2D collision){
+		if (collision.collider.CompareTag("Ground")){
+			isGrounded = true;
+		}
+	}
+
+	private void OnCollisionExit2D(Collision2D collision){
+		if (collision.collider.CompareTag("Ground")){
+			isGrounded = false;
+		}
+	}
+	
+	private IEnumerator DisableMovement(float duration){
+		canMove = false;
+		yield return new WaitForSeconds(duration);
+		canMove = true;
+	}
 }
 
 
