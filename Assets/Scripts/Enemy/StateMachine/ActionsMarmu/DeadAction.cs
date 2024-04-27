@@ -2,7 +2,7 @@
 
 public class DeadAction : Action
 {
-    public override void Execute(Enemy enemy)
+    public override void Execute(Enemy enemy, float DeltaTime)
     {
         Rigidbody2D rb = enemy.GetComponent<Rigidbody2D>();
         if (rb != null)

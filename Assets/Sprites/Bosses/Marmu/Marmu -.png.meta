@@ -97,13 +97,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Marmu -_0
+      name: bounce1
       rect:
         serializedVersion: 2
         x: 0
         y: 1360
         width: 254
-        height: 228
+        height: 223
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -118,13 +118,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Marmu -_1
+      name: bounce3
       rect:
         serializedVersion: 2
-        x: 277
-        y: 894
-        width: 287
-        height: 471
+        x: 278
+        y: 1136
+        width: 260
+        height: 229
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -132,20 +132,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c0a533bb4731bc0f4a34b8b8f1f8c558
-      internalID: 319318883
+      spriteID: b4a92b4ab88098d4b9f0c7d2f11b183a
+      internalID: -1675722948
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Marmu -_2
+      name: bounce4
       rect:
         serializedVersion: 2
-        x: 543
-        y: 1160
+        x: 541
+        y: 1162
         width: 247
-        height: 230
+        height: 224
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -153,19 +153,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2864e94a6d1b66c0d91452dd1d9006cb
-      internalID: 112154396
+      spriteID: a051d601a0221d74c83a7da6484e2d4a
+      internalID: -1507820912
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Marmu -_3
+      name: bounce2
       rect:
         serializedVersion: 2
         x: 0
         y: 1137
-        width: 257
+        width: 254
         height: 223
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -174,20 +174,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 982ec9aed061d43d0988794221325089
-      internalID: 593782778
+      spriteID: ee34489daddfb304fb046e98b39d160c
+      internalID: 182927420
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Marmu -_4
+      name: bounce to idle 1
       rect:
         serializedVersion: 2
         x: 564
-        y: 651
-        width: 313
-        height: 509
+        y: 909
+        width: 311
+        height: 251
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -195,14 +195,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 132108592f386ce22bf5f86b287e3270
-      internalID: 376705087
+      spriteID: 583daded1e6e1a74783ec6854d66ec9e
+      internalID: 348981295
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Marmu -_5
+      name: bounce to idle 3
       rect:
         serializedVersion: 2
         x: 3
@@ -216,14 +216,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dcc67a29874b468898a18d447aaffdc5
-      internalID: -1564867613
+      spriteID: c2831598e33a59c4ca3474602d6bd5dc
+      internalID: 138231276
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Marmu -_6
+      name: idle 3
       rect:
         serializedVersion: 2
         x: 303
@@ -237,14 +237,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5f437b5ff499dd85f8ac35cd0a91aff7
-      internalID: -700613579
+      spriteID: 1e66cf8645f839c4d888544f147cda32
+      internalID: 956648201
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Marmu -_7
+      name: idle 1
       rect:
         serializedVersion: 2
         x: 0
@@ -258,56 +258,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 63a96a33cea650781b9c645c0effeda6
-      internalID: 36847807
+      spriteID: 96bc6bfdb6bf1de4ca22e8c6cbbae2da
+      internalID: -738051522
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Marmu -_8
-      rect:
-        serializedVersion: 2
-        x: 368
-        y: 0
-        width: 368
-        height: 617
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7afaead64faf051ceaaaaa23422761fa
-      internalID: 1796283821
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Marmu -_9
-      rect:
-        serializedVersion: 2
-        x: 704
-        y: 323
-        width: 304
-        height: 328
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6f32dd7b3a8ec11f4b5d2869292191a8
-      internalID: -53723717
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Marmu -_10
+      name: idle to bounce 1
       rect:
         serializedVersion: 2
         x: 0
@@ -321,35 +279,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4b25584d771eac2cfa7a1624330aea00
-      internalID: 2123866123
+      spriteID: 3a7f6d4e68f32b8468250190c943503c
+      internalID: -1449705773
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Marmu -_11
-      rect:
-        serializedVersion: 2
-        x: 735
-        y: 3
-        width: 274
-        height: 320
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 062404ef685c41b649d41042fdedbd15
-      internalID: 101121709
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Marmu -_12
+      name: idle to bounce 2
       rect:
         serializedVersion: 2
         x: 0
@@ -363,8 +300,50 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6c5c47dab1d118062b794ce43959661c
-      internalID: 1854596564
+      spriteID: 0d1fe2b43a064c14288828fbca643a68
+      internalID: 527568829
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bounce to idle 2
+      rect:
+        serializedVersion: 2
+        x: 279
+        y: 893
+        width: 282
+        height: 241
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b0a09949dc178343aa6f3144bdc017f
+      internalID: -494572190
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idle 2
+      rect:
+        serializedVersion: 2
+        x: 591
+        y: 654
+        width: 286
+        height: 255
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8c4afdd2b769f704a98dd2290f664183
+      internalID: 792825657
       vertices: []
       indices: 
       edges: []
@@ -380,19 +359,21 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Marmu -_0: 224475202
-      Marmu -_1: 319318883
-      Marmu -_10: 2123866123
-      Marmu -_11: 101121709
-      Marmu -_12: 1854596564
-      Marmu -_2: 112154396
-      Marmu -_3: 593782778
-      Marmu -_4: 376705087
-      Marmu -_5: -1564867613
-      Marmu -_6: -700613579
-      Marmu -_7: 36847807
-      Marmu -_8: 1796283821
-      Marmu -_9: -53723717
+      Marmu -_11: -470819829
+      Marmu -_8: 2015911935
+      Marmu -_9: -523245833
+      bounce to idle 1: 348981295
+      bounce to idle 2: -494572190
+      bounce to idle 3: 138231276
+      bounce1: 224475202
+      bounce2: 182927420
+      bounce3: -1675722948
+      bounce4: -1507820912
+      idle 1: -738051522
+      idle 2: 792825657
+      idle 3: 956648201
+      idle to bounce 1: -1449705773
+      idle to bounce 2: 527568829
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

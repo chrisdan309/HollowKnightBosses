@@ -1,27 +1,27 @@
 ﻿using UnityEngine;
 
-public class IdleActionXeru : Action
-{
-    private Rigidbody2D rb;
+public class IdleActionXeru : Action{
 
-    private float timeCounter = 0; 
-    public float speed = 2.0f; 
-    public float width = 13f; 
-    public float height = 1f;
+	private float timeCounter = 0; 
+	public float speed = 2.0f; 
+	public float width = 13f; 
+	public float height = 1f;
+	private bool direction = true;
 
-    public IdleActionXeru(Rigidbody2D rb)
-    {
-        this.rb = rb;
-    }
+	private Rigidbody2D rb;
 
-    public override void Execute(Enemy enemy)
-    {
-        timeCounter += Time.deltaTime * speed;
+	public IdleActionXeru(Rigidbody2D rb){
+		direction = true;
+		this.rb = rb;
+	}
 
-        float x = Mathf.Cos(timeCounter) * width;
-        float y = 5 + Mathf.Sin(timeCounter) * height;
+	public override void Execute(Enemy enemy, float DeltaTime){
+		// timeCounter += Time.deltaTime * speed;
 
-        rb.position = new Vector2(x, y);
-        Debug.Log("Xeru is idle at position: " + rb.position);
-    }
+		// float x = Mathf.Cos(timeCounter/5) * width;
+		//float y = 5 + Mathf.Sin(timeCounter) * height;
+
+		// enemy.transform.position = new Vector2(x, enemy.transform.position.y);
+		Debug.Log("Xeru is idle at position: " + rb.position);
+	}
 }

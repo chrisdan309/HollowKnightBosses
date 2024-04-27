@@ -33,7 +33,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.17, y: 2.17, z: 2.17}
+  m_LocalScale: {x: 1.5000001, y: 1.5000001, z: 1.5000001}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 3973188221138907999}
@@ -187,19 +187,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
-  jumpForce: 10.4
+  jumpForce: 11
+  doubleJumpForce: 7
   fallMultiplier: 4
   lowJumpMultiplier: 3
   dashSpeed: 20
   dashDuration: 0.4
   disableDuration: 1
+  dashColor: {r: 1, g: 0, b: 0, a: 1}
   defaultLayer:
     serializedVersion: 2
     m_Bits: 8
   dashLayer:
     serializedVersion: 2
     m_Bits: 256
-  dashColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &6415876623026765906
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -229,8 +230,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackPoint: {fileID: 3973188221138907999}
-  attackRange: 4.85
-  attackHeight: 6.41
+  attackRange: 3.64
+  attackHeight: 3.99
   attackDamage: 20
   enemyLayers:
     serializedVersion: 2

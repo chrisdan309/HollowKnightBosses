@@ -11,11 +11,10 @@ public class SpawnObjectAction : Action
     {
         this.objectToSpawn = objectToSpawn;
         this.enemyTransform = enemyTransform;
-        this.context = context;
         this.delay = 2;
     }
 
-    public override void Execute(Enemy enemy)
+    public override void Execute(Enemy enemy, float DeltaTime)
     {
         // Posiciones relativas: 4 a la izquierda, 2 a la izquierda, 2 a la derecha, 4 a la derecha
         float[] relativePositions = new float[] {-4, -2, 2, 4};
