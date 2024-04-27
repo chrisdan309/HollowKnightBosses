@@ -16,9 +16,11 @@ public class AttackAction : Action
 
     public override void Execute(Enemy enemy)
     {
-        enemy.TakeDamage(damage);
+        // Modificar para realizar algún otro tipo de lógica de ataque
+        Debug.Log("Attack action executed, damage potential: " + damage);
     }
 }
+
 
 public class SpecialAttackAction : Action
 {
@@ -31,7 +33,6 @@ public class SpecialAttackAction : Action
 
     public override void Execute(Enemy enemy)
     {
-        enemy.TakeDamage(specialDamage);
         Debug.Log("Special damage");
     }
 }

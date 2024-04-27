@@ -49,7 +49,7 @@ public class Player : MonoBehaviour
 	private void RemoveInvulnerability(){
 		isInvulnerable = false;
 		spriteRenderer.color = originalColor;
-		gameObject.layer = defaultLayer;  // Vuelve a la capa original
+		gameObject.layer = defaultLayer;
 	}
 
 	IEnumerator PushPlayer(Collider2D collision){

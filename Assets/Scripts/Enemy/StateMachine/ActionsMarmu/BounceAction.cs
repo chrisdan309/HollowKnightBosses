@@ -14,7 +14,9 @@ public class BounceAction : Action
 
     public override void Execute(Enemy enemy)
     {
-        Vector2 forceDirection = new Vector2(-1f, 0).normalized;
+        // Vector2 forceDirection = new Vector2(-1f, 0).normalized;
+        Vector2 forceDirection = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized;
         rb.AddForce(forceDirection * bounceForce, ForceMode2D.Impulse);
     }
+    
 }

@@ -7,7 +7,8 @@ public class Marmu : Enemy
     public float bounceDuration = 8f;
     public float pauseDuration = 2f;
     public float rotation;
-    private Rigidbody2D rb;
+    public float knockbackStrength = 16f;
+    private Rigidbody2D _rb;
     private bool isBouncing = false;
 
     protected override void OnStateChange()
@@ -22,14 +23,14 @@ public class Marmu : Enemy
     void Start()
     {
         rotation = 1000f;
-        rb = GetComponent<Rigidbody2D>();
-        rb.angularVelocity = rotation;
+        _rb = GetComponent<Rigidbody2D>();
+        _rb.angularVelocity = rotation;
         
         states.Add(EnemyState.Idle, new State(EnemyState.Idle));
-        states[EnemyState.Idle].actions.Add(new IdleAction(rb));
+        states[EnemyState.Idle].actions.Add(new IdleAction(_rb));
 
         states.Add(EnemyState.Attacking, new State(EnemyState.Attacking));
-        states[EnemyState.Attacking].actions.Add(new BounceAction(bounceForce, rb));
+        states[EnemyState.Attacking].actions.Add(new BounceAction(bounceForce, _rb));
         
         states.Add(EnemyState.Dead, new State(EnemyState.Dead));
         states[EnemyState.Dead].actions.Add(new DeadAction());
@@ -39,13 +40,30 @@ public class Marmu : Enemy
 
     void OnTriggerEnter2D(Collider2D other) {
         if (other.CompareTag("Player")) {
-            Debug.Log("Trigger con el jugador!");
+            //Debug.Log("Trigger con el jugador!");
             // Lógica trigger plauer
         }
     }
 
     void OnCollisionEnter2D(Collision2D collision) {
-        Debug.Log("Colisión con: " + collision.gameObject.name);
+        //Debug.Log("Colisión con: " + collision.gameObject.name);
+    }
+
+    public override void TakeDamage(Vector3 pos, float damage)
+    {
+        base.TakeDamage(pos, damage);
+        if (health > 0)
+        {
+            // Aplica una fuerza de retroceso
+            
+            // get vector from pos to transform.position
+            Vector2 forceDirection = (transform.position - pos).normalized;
+            _rb.AddForce(forceDirection * knockbackStrength, ForceMode2D.Impulse);
+            Debug.Log("Marmu recibe un retroceso!");
+
+            // Cambia la dirección de Marmu
+            //transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
+        }
     }
 
     IEnumerator BounceRoutine()

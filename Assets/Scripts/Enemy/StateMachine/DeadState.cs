@@ -19,16 +19,13 @@ public class DeadState : MonoBehaviour
             rb.velocity = Vector2.zero;
         }
 
-        // Configurar el animator para reproducir la animación de muerte
         if (animator != null)
         {
             animator.SetTrigger("Die");
         }
 
-        // Opcional: desactivar colisiones y otras interacciones
         GetComponent<Collider2D>().enabled = false;
 
-        // Destruir el objeto después de un breve retraso para permitir que la animación se complete
-        Destroy(gameObject, 2f);  // Ajusta este tiempo según la duración de la animación de muerte
+        Destroy(gameObject, 2f); 
     }
 }

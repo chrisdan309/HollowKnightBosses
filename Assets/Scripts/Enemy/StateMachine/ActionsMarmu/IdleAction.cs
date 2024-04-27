@@ -13,6 +13,7 @@ public class IdleAction : Action
     public override void Execute(Enemy enemy)
     {
         rb.velocity = Vector2.zero;
-        Debug.Log("Marmu is idle.");
+        Debug.Log("Xeru is idle.");
     }
+    
 }
