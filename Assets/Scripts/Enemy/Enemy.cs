@@ -17,33 +17,20 @@ public class Enemy : MonoBehaviour
 	public EnemyState currentState;
 	public readonly Dictionary<EnemyState, State> states = new();
 	
-
-	void Start()
-	{
+	void Start(){
 		ChangeState(EnemyState.Idle);
 		health = maxHealth;
 	}
 
-	protected void ChangeState(EnemyState newState)
-	{
+	protected void ChangeState(EnemyState newState){
 		if (currentState == newState) return;
 		currentState = newState;
-		OnStateChange();
+		states[currentState].OnStateEntry(this);
 	}
 
-	protected virtual void OnStateChange()
-	{
-		// if (states.ContainsKey(currentState))
-		// {
-		//     states[currentState].ExecuteStateActions(this);
-		// }
-	}
-
-	public virtual void TakeDamage(Vector3 pos, float damage)
-	{
+	public virtual void TakeDamage(Vector3 pos, float damage){
 		health -= damage;
-		if (health <= 0)
-		{
+		if (health <= 0){
 			ChangeState(EnemyState.Dead);
 		}
 	}

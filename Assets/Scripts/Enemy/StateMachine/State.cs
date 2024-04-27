@@ -17,7 +17,10 @@ public class State {
 			int randomAction = Random.Range(0, actions.Count);
 			actions[randomAction].Execute(enemy, deltaTime);    
 		}
-		
+	}
+
+	public void OnStateEntry(Enemy enemy){
+
 	}
 
 	public void AddAction(Action action) {

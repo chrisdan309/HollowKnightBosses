@@ -1,17 +1,16 @@
 using System.Collections;
 using UnityEngine;
 
-public class Xeru : Enemy
-{
+public class Xeru : Enemy {
 	public GameObject swordPrefab;
 	private Rigidbody2D _rb;
 
-	protected override void OnStateChange(){
-		base.OnStateChange();
-		if (currentState == EnemyState.Attacking){
-			StartCoroutine(SpawnRoutine());
-		}
-	}
+	// protected override void OnStateChange(){
+	// 	base.OnStateChange();
+	// 	if (currentState == EnemyState.Attacking){
+	// 		StartCoroutine(SpawnRoutine());
+	// 	}
+	// }
 
 	void Start(){
 		_rb = GetComponent<Rigidbody2D>();
