@@ -1180,7 +1180,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2637686645554652784, guid: 5d37902bcbdd55742934157a71958799, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8920075848297685673, guid: 5d37902bcbdd55742934157a71958799, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1283,13 +1283,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5247660742006867143, guid: fc6cfdff9f1d21e4199f0ebfa1e62e0d, type: 3}
+      propertyPath: positionOffset.x
+      value: 1.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5247660742006867143, guid: fc6cfdff9f1d21e4199f0ebfa1e62e0d, type: 3}
+      propertyPath: positionOffset.y
+      value: 1.3
+      objectReference: {fileID: 0}
     - target: {fileID: 6466172950695663793, guid: fc6cfdff9f1d21e4199f0ebfa1e62e0d, type: 3}
       propertyPath: m_Name
       value: Xeru
       objectReference: {fileID: 0}
     - target: {fileID: 6466172950695663793, guid: fc6cfdff9f1d21e4199f0ebfa1e62e0d, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6976589232602200031, guid: fc6cfdff9f1d21e4199f0ebfa1e62e0d, type: 3}
+      propertyPath: positionOffset.x
+      value: -1.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6976589232602200031, guid: fc6cfdff9f1d21e4199f0ebfa1e62e0d, type: 3}
+      propertyPath: positionOffset.y
+      value: 1.3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

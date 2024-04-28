@@ -24,7 +24,7 @@ public class Enemy : MonoBehaviour
 		health = maxHealth;
 	}
 
-	protected void ChangeState(EnemyState newState){
+	public void ChangeState(EnemyState newState){
 		if (currentState == newState) return;
 		currentState = newState;
 		states[currentState].OnStateEntry(this);

@@ -2,7 +2,8 @@ using System.Collections;
 using UnityEngine;
 
 public class Xeru : Enemy {
-	public GameObject swordPrefab;
+
+	private bool isIdleCorroutineRunning = false;
 
 	// protected override void OnStateChange(){
 	// 	base.OnStateChange();
@@ -18,22 +19,29 @@ public class Xeru : Enemy {
 		states[EnemyState.Idle].actions.Add(new IdleActionXeru(rb));
 
 		states.Add(EnemyState.Attacking, new State(EnemyState.Attacking));
-		states[EnemyState.Attacking].actions.Add(new SpawnObjectAction(swordPrefab, transform));
+		states[EnemyState.Attacking].actions.Add(new AttackActionXeru());
 		
 		states.Add(EnemyState.Dead, new State(EnemyState.Dead));
 		states[EnemyState.Dead].actions.Add(new DeadAction());
 
 		ChangeState(EnemyState.Idle);
+		StartCoroutine(WaitAttack());
 	}
 
 	void Update(){
 		states[currentState].ExecuteStateActions(this, Time.deltaTime);
+		if(!isIdleCorroutineRunning && currentState == EnemyState.Idle){
+			StartCoroutine(WaitAttack());
+		}
 	}
 
-	IEnumerator SpawnRoutine(){
-		while (currentState == EnemyState.Attacking){
+	IEnumerator WaitAttack(){
+		isIdleCorroutineRunning = true;
+		while (currentState == EnemyState.Idle){
 			//states[currentState].ExecuteStateActions(this);
-			yield return new WaitForSeconds(2f);
+			yield return new WaitForSeconds(3f);
+			ChangeState(EnemyState.Attacking);
+			isIdleCorroutineRunning = false;
 		}
 	}
 }
