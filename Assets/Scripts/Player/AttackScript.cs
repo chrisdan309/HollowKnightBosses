@@ -35,6 +35,7 @@ public class AttackScript : MonoBehaviour
 		// Aplicar daño a esos enemigos
 		foreach(Collider2D enemy in hitEnemies){
 			// Aquí podrías llamar a un método del enemigo para recibir daño
+			Debug.Log("We hit " + enemy.name + " with the attack.");
 			enemy.GetComponent<Enemy>().TakeDamage(this.transform.position, attackDamage);
 		}
 	}

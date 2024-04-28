@@ -30,16 +30,15 @@ public class Enemy : MonoBehaviour
 		states[currentState].OnStateEntry(this);
 	}
 
-	public void TakeDamage(Vector3 pos, float damage){
+	public void TakeDamage(Vector3 pos, float damage)
+	{
 		health -= damage;
-		if (health <= 0){
-			ChangeState(EnemyState.Dead);
-		}
-		else
+		Debug.Log("Markoth took damage.");
+		Vector2 forceDirection = (transform.position - pos).normalized;
+		rb.AddForce(forceDirection * knockbackStrength, ForceMode2D.Impulse);
+		if (health <= 0)
 		{
-			Vector2 forceDirection = (transform.position - pos).normalized;
-			rb.AddForce(forceDirection * knockbackStrength, ForceMode2D.Impulse);
-
+			ChangeState(EnemyState.Dead);
 		}
 	}
 }
