@@ -50,7 +50,7 @@ public class Movement : MonoBehaviour{
 			transform.localScale = new Vector3(xscale * Mathf.Abs(transform.localScale.x), transform.localScale.y, 1);
 		}
 
-		//change to force if i have time
+		// Change to force if I have time
 		Vector2 movement = new Vector2(x * speed, _rb.velocity.y);
 		_rb.velocity = movement;
 	}
