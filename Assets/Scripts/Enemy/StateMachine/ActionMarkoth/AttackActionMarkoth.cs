@@ -5,7 +5,7 @@ public class AttackActionMarkoth : Action
     private GameObject _player;
     private float _acelerationToPlayer;
     private Rigidbody2D _rb;
-    private float _maxSpeed = 2f;
+    private float _maxSpeed = 1f;
 
     public AttackActionMarkoth(Rigidbody2D rb, GameObject player)
     {

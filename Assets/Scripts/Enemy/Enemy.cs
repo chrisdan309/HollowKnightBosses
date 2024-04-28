@@ -33,7 +33,6 @@ public class Enemy : MonoBehaviour
 	public void TakeDamage(Vector3 pos, float damage)
 	{
 		health -= damage;
-		Debug.Log("Markoth took damage.");
 		Vector2 forceDirection = (transform.position - pos).normalized;
 		rb.AddForce(forceDirection * knockbackStrength, ForceMode2D.Impulse);
 		if (health <= 0)
