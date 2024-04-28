@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Xeru : Enemy {
 
-	private bool isIdleCorroutineRunning = false;
+	private bool _isIdleCorroutineRunning = false;
 
 	// protected override void OnStateChange(){
 	// 	base.OnStateChange();
@@ -15,32 +15,32 @@ public class Xeru : Enemy {
 	void Start(){
 		rb = GetComponent<Rigidbody2D>();
 
-		states.Add(EnemyState.Idle, new State(EnemyState.Idle));
-		states[EnemyState.Idle].actions.Add(new IdleActionXeru(rb));
+		States.Add(EnemyState.Idle, new State(EnemyState.Idle));
+		States[EnemyState.Idle].Actions.Add(new IdleActionXeru(rb));
 
-		states.Add(EnemyState.Attacking, new State(EnemyState.Attacking));
-		states[EnemyState.Attacking].actions.Add(new AttackActionXeru());
+		States.Add(EnemyState.Attacking, new State(EnemyState.Attacking));
+		States[EnemyState.Attacking].Actions.Add(new AttackActionXeru());
 		
-		states.Add(EnemyState.Dead, new State(EnemyState.Dead));
-		states[EnemyState.Dead].actions.Add(new DeadAction());
+		States.Add(EnemyState.Dead, new State(EnemyState.Dead));
+		States[EnemyState.Dead].Actions.Add(new DeadAction());
 
 		ChangeState(EnemyState.Idle);
 		StartCoroutine(WaitAttack());
 	}
 
 	void Update(){
-		states[currentState].ExecuteStateActions(this);
-		if(!isIdleCorroutineRunning && currentState == EnemyState.Idle){
+		States[currentState].ExecuteStateActions(this);
+		if(!_isIdleCorroutineRunning && currentState == EnemyState.Idle){
 			StartCoroutine(WaitAttack());
 		}
 	}
 
 	IEnumerator WaitAttack(){
-		isIdleCorroutineRunning = true;
+		_isIdleCorroutineRunning = true;
 		while (currentState == EnemyState.Idle){
 			yield return new WaitForSeconds(3f);
 			ChangeState(EnemyState.Attacking);
-			isIdleCorroutineRunning = false;
+			_isIdleCorroutineRunning = false;
 		}
 	}
 }

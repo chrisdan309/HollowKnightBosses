@@ -20,11 +20,11 @@ public class AttackAction : Action {
 
 public class SpecialAttackAction : Action
 {
-	private int specialDamage;
+	private int _specialDamage;
 
 	public SpecialAttackAction(int specialDamage)
 	{
-		this.specialDamage = specialDamage;
+		_specialDamage = specialDamage;
 	}
 
 	public override void Execute(Enemy enemy)

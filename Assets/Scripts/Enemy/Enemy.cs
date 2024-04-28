@@ -17,7 +17,7 @@ public class Enemy : MonoBehaviour
 	public EnemyState currentState;
 	public Rigidbody2D rb;
 	public float knockbackStrength = 16f;
-	public readonly Dictionary<EnemyState, State> states = new();
+	public readonly Dictionary<EnemyState, State> States = new();
 	
 	void Start(){
 		ChangeState(EnemyState.Idle);
@@ -27,7 +27,7 @@ public class Enemy : MonoBehaviour
 	public void ChangeState(EnemyState newState){
 		if (currentState == newState) return;
 		currentState = newState;
-		states[currentState].OnStateEntry(this);
+		States[currentState].OnStateEntry(this);
 	}
 
 	public void TakeDamage(Vector3 pos, float damage)

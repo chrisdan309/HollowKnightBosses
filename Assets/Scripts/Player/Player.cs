@@ -12,18 +12,18 @@ public class Player : MonoBehaviour
 	public float invulnerabilityTime = 2f;
 	[SerializeField] 
 	private bool isInvulnerable = false;
-	private Rigidbody2D rb;
-	private int defaultLayer;
+	private Rigidbody2D _rb;
+	private int _defaultLayer;
 	
-	private SpriteRenderer spriteRenderer;
+	private SpriteRenderer _spriteRenderer;
 	public Color invulnerableColor = Color.blue;
-	private Color originalColor;
+	private Color _originalColor;
 
 	private void Awake(){
-		spriteRenderer = GetComponent<SpriteRenderer>();
-		originalColor = spriteRenderer.color;
-		rb = GetComponent<Rigidbody2D>();
-		defaultLayer = gameObject.layer;
+		_spriteRenderer = GetComponent<SpriteRenderer>();
+		_originalColor = _spriteRenderer.color;
+		_rb = GetComponent<Rigidbody2D>();
+		_defaultLayer = gameObject.layer;
 		UpdateHealthText();
 	}
 
@@ -43,15 +43,15 @@ public class Player : MonoBehaviour
 
 	private void MakeInvulnerable(){
 		isInvulnerable = true;
-		spriteRenderer.color = invulnerableColor;
+		_spriteRenderer.color = invulnerableColor;
 
 		Invoke("RemoveInvulnerability", invulnerabilityTime);
 	}
 
 	private void RemoveInvulnerability(){
 		isInvulnerable = false;
-		spriteRenderer.color = originalColor;
-		gameObject.layer = defaultLayer;
+		_spriteRenderer.color = _originalColor;
+		gameObject.layer = _defaultLayer;
 	}
 
 	void UpdateHealthText()
@@ -61,11 +61,11 @@ public class Player : MonoBehaviour
 	
 	IEnumerator PushPlayer(Collider2D collision){
 		float direction = (transform.position.x - collision.transform.position.x) > 0 ? -1 : 1;
-		Debug.Log(direction > 0 ? "Izquierda" : "Derecha");
+		//Debug.Log(direction > 0 ? "Izquierda" : "Derecha");
 		
-		rb.AddForce(new Vector2(direction * 0.001f, 0), ForceMode2D.Impulse);
+		_rb.AddForce(new Vector2(direction * 0.001f, 0), ForceMode2D.Impulse);
 		yield return new WaitForSeconds(0.8f);
-		rb.velocity = new Vector2(0,0);
+		_rb.velocity = new Vector2(0,0);
 
 	}
 	

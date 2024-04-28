@@ -10,11 +10,12 @@ public class AttackScript : MonoBehaviour
 	[SerializeField] private int attackDamage = 20; // El daño que hará el ataque
 	public LayerMask enemyLayers;
 
-	private Animator animator;
+	private Animator _animator;
+	private static readonly int Attack1 = Animator.StringToHash("Attack");
 
 	// Start is called before the first frame update
 	void Start(){
-		animator = GetComponent<Animator>();
+		_animator = GetComponent<Animator>();
 	}
 
 	// Update is called once per frame
@@ -27,7 +28,7 @@ public class AttackScript : MonoBehaviour
 	// ReSharper disable Unity.PerformanceAnalysis
 	void Attack(){
 		// Reproducir la animación de ataque
-		animator.SetTrigger("Attack");
+		_animator.SetTrigger(Attack1);
 
 		// Detectar enemigos en el rango del ataque
 		Collider2D[] hitEnemies = Physics2D.OverlapAreaAll(attackPoint.position, new Vector2(attackRange, attackHeight), enemyLayers);

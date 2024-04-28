@@ -2,20 +2,20 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class State {
-	public List<Action> actions = new List<Action>();
-	public EnemyState stateType;
+	public List<Action> Actions = new List<Action>();
+	public EnemyState StateType;
 	
 
 	public State(EnemyState type) {
-		stateType = type;
+		StateType = type;
 	}
 
 	public void ExecuteStateActions(Enemy enemy) {
 		// Numero aleatorio para elegir la acción
-		if (actions.Count == 0) actions[0].Execute(enemy);
+		if (Actions.Count == 0) Actions[0].Execute(enemy);
 		else{
-			int randomAction = Random.Range(0, actions.Count);
-			actions[randomAction].Execute(enemy);    
+			int randomAction = Random.Range(0, Actions.Count);
+			Actions[randomAction].Execute(enemy);    
 		}
 	}
 
@@ -24,7 +24,7 @@ public class State {
 	}
 
 	public void AddAction(Action action) {
-		actions.Add(action);
+		Actions.Add(action);
 	}
 	
 }

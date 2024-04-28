@@ -2,26 +2,26 @@
 
 public class DeadState : MonoBehaviour
 {
-    private Animator animator;
-    private Rigidbody2D rb;
+    private Animator _animator;
+    private Rigidbody2D _rb;
 
     void Awake()
     {
-        animator = GetComponent<Animator>();
-        rb = GetComponent<Rigidbody2D>();
+        _animator = GetComponent<Animator>();
+        _rb = GetComponent<Rigidbody2D>();
     }
 
     public void EnterDeadState()
     {
         // Detener el movimiento
-        if (rb != null)
+        if (_rb != null)
         {
-            rb.velocity = Vector2.zero;
+            _rb.velocity = Vector2.zero;
         }
 
-        if (animator != null)
+        if (_animator != null)
         {
-            animator.SetTrigger("Die");
+            _animator.SetTrigger("Die");
         }
 
         GetComponent<Collider2D>().enabled = false;

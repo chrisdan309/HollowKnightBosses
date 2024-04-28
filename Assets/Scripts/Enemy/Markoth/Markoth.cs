@@ -10,14 +10,14 @@ public class Markoth : Enemy
     {
         rb = GetComponent<Rigidbody2D>();
 		
-        states.Add(EnemyState.Idle, new State(EnemyState.Idle));
-        states[EnemyState.Idle].actions.Add(new IdleAction(rb));
+        States.Add(EnemyState.Idle, new State(EnemyState.Idle));
+        States[EnemyState.Idle].Actions.Add(new IdleAction(rb));
 
-        states.Add(EnemyState.Attacking, new State(EnemyState.Attacking));
-        states[EnemyState.Attacking].actions.Add(new AttackActionMarkoth(rb, GameObject.FindWithTag("Player"), prefab));
+        States.Add(EnemyState.Attacking, new State(EnemyState.Attacking));
+        States[EnemyState.Attacking].Actions.Add(new AttackActionMarkoth(rb, GameObject.FindWithTag("Player"), prefab));
 		
-        states.Add(EnemyState.Dead, new State(EnemyState.Dead));
-        states[EnemyState.Dead].actions.Add(new DeadAction());
+        States.Add(EnemyState.Dead, new State(EnemyState.Dead));
+        States[EnemyState.Dead].Actions.Add(new DeadAction());
 
         ChangeState(EnemyState.Idle);
         StartCoroutine(IdleRoutine());
@@ -26,7 +26,7 @@ public class Markoth : Enemy
 
     private void FixedUpdate()
     {
-        states[currentState].ExecuteStateActions(this);
+        States[currentState].ExecuteStateActions(this);
     }
     
     IEnumerator AttackRoutine()

@@ -3,16 +3,16 @@ using UnityEngine;
 
 public class IdleAction : Action
 {
-    private Rigidbody2D rb;
+    private Rigidbody2D _rb;
 
     public IdleAction(Rigidbody2D rb)
     {
-        this.rb = rb;
+        this._rb = rb;
     }
 
     public override void Execute(Enemy enemy)
     {
-        rb.velocity = Vector2.zero;
+        _rb.velocity = Vector2.zero;
     }
     
 }

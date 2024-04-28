@@ -5,7 +5,7 @@ public class SwordMarkoth : MonoBehaviour
     private Transform _playerTransform;
     private Rigidbody2D _rb; 
     public float forceStrength = 50f;
-    private bool isAttack = false;
+    private bool _isAttack = false;
     public float minX;
     public float maxX;
     public float minY;
@@ -21,7 +21,7 @@ public class SwordMarkoth : MonoBehaviour
 
     void Update()
     {
-        if(!isAttack) LookPlayer();
+        if(!_isAttack) LookPlayer();
         if (transform.position.x < minX || transform.position.x > maxX || 
             transform.position.y < minY || transform.position.y > maxY)
         {
@@ -38,9 +38,9 @@ public class SwordMarkoth : MonoBehaviour
 
     void ApplyForceToPlayer()
     {
-        if(!isAttack){
+        if(!_isAttack){
             Vector2 directionToPlayer = (_playerTransform.position - transform.position).normalized;
-            isAttack = true;
+            _isAttack = true;
             _rb.AddForce(directionToPlayer * forceStrength, ForceMode2D.Impulse);
         }
     }

@@ -10,11 +10,11 @@ public class XeruSword : MonoBehaviour
 
 	public GameObject parentEnemy;
 	
-	private Rigidbody2D rb;
-	private Transform target;
+	private Rigidbody2D _rb;
+	private Transform _target;
 
 	void Awake(){
-		rb = GetComponent<Rigidbody2D>();
+		_rb = GetComponent<Rigidbody2D>();
 	}
 
 	void Update(){
@@ -22,16 +22,16 @@ public class XeruSword : MonoBehaviour
 	}
 
 	public void Attack(){
-		if (target != null){
-			Vector2 direction = (target.position - transform.position).normalized;
-			rb.velocity = direction * attackSpeed;
-			Debug.Log("Sword attacking towards " + target.name);
+		if (_target != null){
+			Vector2 direction = (_target.position - transform.position).normalized;
+			_rb.velocity = direction * attackSpeed;
+			Debug.Log("Sword attacking towards " + _target.name);
 			StartCoroutine(ReturnCorrutine());
 		}
 	}
 
 	public void ReturnSword(){
-		if((rb.position - (Vector2)parentEnemy.transform.position != (positionOffset + new Vector2(0.01f, 0.01f))) && target == null){
+		if((_rb.position - (Vector2)parentEnemy.transform.position != (positionOffset + new Vector2(0.01f, 0.01f))) && _target == null){
 			
 			float step = returnSpeed * Time.deltaTime;
 			transform.localPosition = Vector3.MoveTowards(transform.localPosition, positionOffset, step);
@@ -39,17 +39,17 @@ public class XeruSword : MonoBehaviour
 	}
 
 	public XeruSword SetPlayerTarget(){
-		target = GameObject.FindGameObjectWithTag("Player").transform;
+		_target = GameObject.FindGameObjectWithTag("Player").transform;
 		return this;
 	}
 
 	public void RestoreTarget(){
-		target = null;
+		_target = null;
 	}
 
 	IEnumerator ReturnCorrutine(){
 		yield return new WaitForSeconds(attackingTime);
 		RestoreTarget();
-		rb.velocity = Vector2.zero;
+		_rb.velocity = Vector2.zero;
 	}
 }
