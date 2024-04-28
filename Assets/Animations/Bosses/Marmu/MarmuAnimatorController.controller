@@ -85,14 +85,8 @@ AnimatorController:
   m_Name: MarmuAnimatorController
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: StartBouncing
-    m_Type: 9
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
-  - m_Name: StopBouncing
-    m_Type: 9
+  - m_Name: Bounce
+    m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
@@ -119,7 +113,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: StartBouncing
+    m_ConditionEvent: Bounce
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 2900231767389609953}
@@ -250,8 +244,8 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 1
-    m_ConditionEvent: StopBouncing
+  - m_ConditionMode: 2
+    m_ConditionEvent: Bounce
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 6217877045139650136}

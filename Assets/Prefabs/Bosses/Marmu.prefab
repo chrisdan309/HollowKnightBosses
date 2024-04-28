@@ -255,7 +255,7 @@ MonoBehaviour:
   health: 100
   attackPower: 1
   currentState: 0
-  bounceAceleration: 10
+  bounceAceleration: 12
   bounceDuration: 8
   pauseDuration: 2
-  knockbackStrength: 16
+  knockbackStrength: 30

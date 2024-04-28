@@ -7,10 +7,13 @@ public class Marmu : Enemy
 	public float bounceDuration = 8f;
 	public float pauseDuration = 2f;
 	public float knockbackStrength = 16f;
+
 	private Rigidbody2D _rb;
+	private Animator _animator;
 	
 	void Start(){
 		_rb = GetComponent<Rigidbody2D>();
+		_animator = GetComponent<Animator>();
 		
 		states.Add(EnemyState.Idle, new State(EnemyState.Idle));
 		states[EnemyState.Idle].actions.Add(new IdleAction(_rb));
@@ -21,8 +24,8 @@ public class Marmu : Enemy
 		states.Add(EnemyState.Dead, new State(EnemyState.Dead));
 		states[EnemyState.Dead].actions.Add(new DeadAction());
 
-		ChangeState(EnemyState.Attacking);
-
+		ChangeState(EnemyState.Idle);
+		StartCoroutine(IdleRoutine());
 	}
 
 	void FixedUpdate(){
@@ -60,36 +63,22 @@ public class Marmu : Enemy
 	IEnumerator AttackRoutine(){
 
 		//start attack animation
-
 		while (currentState == EnemyState.Attacking){
+			_animator.SetBool("Bounce", true);
 			yield return new WaitForSeconds(bounceDuration);
 			ChangeState(EnemyState.Idle);
+			StartCoroutine(IdleRoutine());
 		}
 	}
 
 	IEnumerator IdleRoutine(){
 
 		//start idle animation
-
 		while (currentState == EnemyState.Idle){
+			_animator.SetBool("Bounce", false);
 			yield return new WaitForSeconds(pauseDuration);
-
 			ChangeState(EnemyState.Attacking);
+			StartCoroutine(AttackRoutine());
 		}
 	}
-
-	// IEnumerator BounceRoutine()
-	// {
-	// 	while (currentState == EnemyState.Attacking)
-	// 	{
-	// 		isBouncing = true;
-	// 		yield return new WaitForSeconds(bounceDuration);
-
-	// 		isBouncing = false;
-	// 		ChangeState(EnemyState.Idle);
-	// 		yield return new WaitForSeconds(pauseDuration);
-
-	// 		ChangeState(EnemyState.Attacking);
-	// 	}
-	// }
 }
