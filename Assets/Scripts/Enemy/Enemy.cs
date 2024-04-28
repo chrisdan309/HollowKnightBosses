@@ -15,6 +15,8 @@ public class Enemy : MonoBehaviour
 	public float health;
 	public float attackPower;
 	public EnemyState currentState;
+	public Rigidbody2D rb;
+	public float knockbackStrength = 16f;
 	public readonly Dictionary<EnemyState, State> states = new();
 	
 	void Start(){
@@ -28,10 +30,16 @@ public class Enemy : MonoBehaviour
 		states[currentState].OnStateEntry(this);
 	}
 
-	public virtual void TakeDamage(Vector3 pos, float damage){
+	public void TakeDamage(Vector3 pos, float damage){
 		health -= damage;
 		if (health <= 0){
 			ChangeState(EnemyState.Dead);
+		}
+		else
+		{
+			Vector2 forceDirection = (transform.position - pos).normalized;
+			rb.AddForce(forceDirection * knockbackStrength, ForceMode2D.Impulse);
+
 		}
 	}
 }

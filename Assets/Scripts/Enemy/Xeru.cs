@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class Xeru : Enemy {
 	public GameObject swordPrefab;
-	private Rigidbody2D _rb;
 
 	// protected override void OnStateChange(){
 	// 	base.OnStateChange();
@@ -13,10 +12,10 @@ public class Xeru : Enemy {
 	// }
 
 	void Start(){
-		_rb = GetComponent<Rigidbody2D>();
+		rb = GetComponent<Rigidbody2D>();
 
 		states.Add(EnemyState.Idle, new State(EnemyState.Idle));
-		states[EnemyState.Idle].actions.Add(new IdleActionXeru(_rb));
+		states[EnemyState.Idle].actions.Add(new IdleActionXeru(rb));
 
 		states.Add(EnemyState.Attacking, new State(EnemyState.Attacking));
 		states[EnemyState.Attacking].actions.Add(new SpawnObjectAction(swordPrefab, transform));

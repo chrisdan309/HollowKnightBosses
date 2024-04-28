@@ -10,7 +10,7 @@ public class Markoth : Enemy
         _rb = GetComponent<Rigidbody2D>();
 		
         states.Add(EnemyState.Idle, new State(EnemyState.Idle));
-        states[EnemyState.Idle].actions.Add(new IdleActionMarkoth());
+        states[EnemyState.Idle].actions.Add(new IdleAction(_rb));
 
         states.Add(EnemyState.Attacking, new State(EnemyState.Attacking));
         states[EnemyState.Attacking].actions.Add(new AttackActionMarkoth(_rb, GameObject.FindWithTag("Player")));
@@ -26,4 +26,5 @@ public class Markoth : Enemy
     {
         states[currentState].ExecuteStateActions(this, Time.deltaTime);
     }
+    
 }
