@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class Sword : MonoBehaviour
+public class XeruSword : MonoBehaviour
 {
 	public float attackSpeed = 15f;
 	public float returnSpeed = 5f;
@@ -38,7 +38,7 @@ public class Sword : MonoBehaviour
 		}
 	}
 
-	public Sword SetPlayerTarget(){
+	public XeruSword SetPlayerTarget(){
 		target = GameObject.FindGameObjectWithTag("Player").transform;
 		return this;
 	}

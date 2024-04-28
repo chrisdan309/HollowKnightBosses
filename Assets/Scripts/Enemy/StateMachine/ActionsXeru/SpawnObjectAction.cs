@@ -31,6 +31,6 @@ public class SpawnObjectAction : Action
     private IEnumerator TriggerAttack(GameObject sword, float delaySword)
     {
         yield return new WaitForSeconds(delaySword);
-        sword.GetComponent<Sword>().Attack();
+        sword.GetComponent<XeruSword>().Attack();
     }
 }
