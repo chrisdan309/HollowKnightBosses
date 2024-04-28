@@ -215,6 +215,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &699240205 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6466172950695663793, guid: fc6cfdff9f1d21e4199f0ebfa1e62e0d, type: 3}
+  m_PrefabInstance: {fileID: 4743035775930439957}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &970665923
 GameObject:
   m_ObjectHideFlags: 0
@@ -1284,6 +1289,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5247660742006867143, guid: fc6cfdff9f1d21e4199f0ebfa1e62e0d, type: 3}
+      propertyPath: parentEnemy
+      value: 
+      objectReference: {fileID: 699240205}
+    - target: {fileID: 5247660742006867143, guid: fc6cfdff9f1d21e4199f0ebfa1e62e0d, type: 3}
       propertyPath: positionOffset.x
       value: 1.7
       objectReference: {fileID: 0}
@@ -1299,6 +1308,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6976589232602200031, guid: fc6cfdff9f1d21e4199f0ebfa1e62e0d, type: 3}
+      propertyPath: parentEnemy
+      value: 
+      objectReference: {fileID: 699240205}
     - target: {fileID: 6976589232602200031, guid: fc6cfdff9f1d21e4199f0ebfa1e62e0d, type: 3}
       propertyPath: positionOffset.x
       value: -1.7
