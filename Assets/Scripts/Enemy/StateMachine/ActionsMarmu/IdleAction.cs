@@ -10,10 +10,9 @@ public class IdleAction : Action
         this.rb = rb;
     }
 
-    public override void Execute(Enemy enemy, float deltaTime)
+    public override void Execute(Enemy enemy)
     {
         rb.velocity = Vector2.zero;
-        Debug.Log("Xeru is idle.");
     }
     
 }

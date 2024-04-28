@@ -1,7 +1,7 @@
 using UnityEngine;
 
 public abstract class Action {
-	public abstract void Execute(Enemy enemy, float deltaTime);
+	public abstract void Execute(Enemy enemy);
 }
 
 public class AttackAction : Action {
@@ -11,7 +11,7 @@ public class AttackAction : Action {
 		this.damage = damage;
 	}
 
-	public override void Execute(Enemy enemy, float deltaTime)
+	public override void Execute(Enemy enemy)
 	{
 		// Modificar para realizar algún otro tipo de lógica de ataque
 		Debug.Log("Attack action executed, damage potential: " + damage);
@@ -27,7 +27,7 @@ public class SpecialAttackAction : Action
 		this.specialDamage = specialDamage;
 	}
 
-	public override void Execute(Enemy enemy, float deltaTime)
+	public override void Execute(Enemy enemy)
 	{
 		Debug.Log("Special damage");
 	}

@@ -15,7 +15,7 @@ public class IdleActionXeru : Action{
 		this.rb = rb;
 	}
 
-	public override void Execute(Enemy enemy, float DeltaTime){
+	public override void Execute(Enemy enemy){
 		// timeCounter += Time.deltaTime * speed;
 
 		rb.velocity = new Vector2(speed, 0) * direction;

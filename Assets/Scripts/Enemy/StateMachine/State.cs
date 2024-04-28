@@ -10,12 +10,12 @@ public class State {
 		stateType = type;
 	}
 
-	public void ExecuteStateActions(Enemy enemy, float deltaTime) {
+	public void ExecuteStateActions(Enemy enemy) {
 		// Numero aleatorio para elegir la acción
-		if (actions.Count == 0) actions[0].Execute(enemy, deltaTime);
+		if (actions.Count == 0) actions[0].Execute(enemy);
 		else{
 			int randomAction = Random.Range(0, actions.Count);
-			actions[randomAction].Execute(enemy, deltaTime);    
+			actions[randomAction].Execute(enemy);    
 		}
 	}
 

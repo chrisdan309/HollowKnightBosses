@@ -2,7 +2,7 @@
 
 public class DeadAction : Action
 {
-    public override void Execute(Enemy enemy, float DeltaTime)
+    public override void Execute(Enemy enemy)
     {
         Rigidbody2D rb = enemy.GetComponent<Rigidbody2D>();
         if (rb != null)
@@ -16,6 +16,6 @@ public class DeadAction : Action
         if (collider != null)
             collider.enabled = false;
         
-        GameObject.Destroy(enemy.gameObject, 2f); 
+        GameObject.Destroy(enemy.gameObject); 
     }
 }

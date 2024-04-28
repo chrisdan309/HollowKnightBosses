@@ -12,9 +12,8 @@ public class BounceAction : Action {
 		this.player = player;
 	}
 
-	public override void Execute(Enemy enemy, float deltaTime) {
+	public override void Execute(Enemy enemy) {
 		// Vector2 forceDirection = new Vector2(-1f, 0).normalized;
-		// apply aceleration to player
 		if (player == null || enemy == null) return;
 
 		Vector2 direction = player.transform.position - enemy.transform.position;

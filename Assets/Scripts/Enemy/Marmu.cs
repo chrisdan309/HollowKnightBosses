@@ -26,7 +26,7 @@ public class Marmu : Enemy
 	}
 
 	void FixedUpdate(){
-		states[currentState].ExecuteStateActions(this, Time.deltaTime);
+		states[currentState].ExecuteStateActions(this);
 	}
 
 	void OnTriggerEnter2D(Collider2D other) {

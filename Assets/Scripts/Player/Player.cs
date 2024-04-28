@@ -1,11 +1,13 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+	public TMP_Text healthText;
 	public int life = 3;
 	public float invulnerabilityTime = 2f;
 	[SerializeField] 
@@ -22,14 +24,14 @@ public class Player : MonoBehaviour
 		originalColor = spriteRenderer.color;
 		rb = GetComponent<Rigidbody2D>();
 		defaultLayer = gameObject.layer;
+		UpdateHealthText();
 	}
 
 	public void OnTriggerEnter2D(Collider2D collision){
-		Debug.Log("ASDASDs");
 
 		if (!isInvulnerable){
-			Debug.Log("Entro");
 			life--;
+			UpdateHealthText();
 			MakeInvulnerable();
 			StartCoroutine(PushPlayer(collision));
 			// PushPlayer(collision);
@@ -52,6 +54,11 @@ public class Player : MonoBehaviour
 		gameObject.layer = defaultLayer;
 	}
 
+	void UpdateHealthText()
+	{
+		healthText.text = "Vida: " + life.ToString("0");
+	}
+	
 	IEnumerator PushPlayer(Collider2D collision){
 		float direction = (transform.position.x - collision.transform.position.x) > 0 ? -1 : 1;
 		Debug.Log(direction > 0 ? "Izquierda" : "Derecha");
@@ -61,5 +68,7 @@ public class Player : MonoBehaviour
 		rb.velocity = new Vector2(0,0);
 
 	}
+	
+	
 
 }

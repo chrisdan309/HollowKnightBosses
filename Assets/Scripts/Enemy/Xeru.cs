@@ -29,7 +29,7 @@ public class Xeru : Enemy {
 	}
 
 	void Update(){
-		states[currentState].ExecuteStateActions(this, Time.deltaTime);
+		states[currentState].ExecuteStateActions(this);
 		if(!isIdleCorroutineRunning && currentState == EnemyState.Idle){
 			StartCoroutine(WaitAttack());
 		}
@@ -38,7 +38,6 @@ public class Xeru : Enemy {
 	IEnumerator WaitAttack(){
 		isIdleCorroutineRunning = true;
 		while (currentState == EnemyState.Idle){
-			//states[currentState].ExecuteStateActions(this);
 			yield return new WaitForSeconds(3f);
 			ChangeState(EnemyState.Attacking);
 			isIdleCorroutineRunning = false;

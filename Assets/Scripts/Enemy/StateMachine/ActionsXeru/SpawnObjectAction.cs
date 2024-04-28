@@ -14,7 +14,7 @@ public class SpawnObjectAction : Action
         this.delay = 2;
     }
 
-    public override void Execute(Enemy enemy, float DeltaTime)
+    public override void Execute(Enemy enemy)
     {
         // Posiciones relativas: 4 a la izquierda, 2 a la izquierda, 2 a la derecha, 4 a la derecha
         float[] relativePositions = new float[] {-4, -2, 2, 4};
