@@ -12,7 +12,7 @@ public class State {
 
 	public void ExecuteStateActions(Enemy enemy) {
 		// Numero aleatorio para elegir la acción
-		if (Actions.Count == 0) Actions[0].Execute(enemy);
+		if (Actions.Count == 1) Actions[0].Execute(enemy);
 		else{
 			int randomAction = Random.Range(0, Actions.Count);
 			Actions[randomAction].Execute(enemy);    

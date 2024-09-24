@@ -17,7 +17,7 @@ public class Enemy : MonoBehaviour
 	public EnemyState currentState;
 	public Rigidbody2D rb;
 	public float knockbackStrength = 16f;
-	public readonly Dictionary<EnemyState, State> States = new();
+	[SerializeField] public Dictionary<EnemyState, State> States = new();
 	
 	void Start(){
 		ChangeState(EnemyState.Idle);

@@ -6,6 +6,7 @@ public class Markoth : Enemy
 {
     public GameObject shield;
     public GameObject prefab;
+    public float time;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
